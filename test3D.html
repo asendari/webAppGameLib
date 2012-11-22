@@ -1,0 +1,47 @@
+<html>
+
+<head>
+	<script src="src/isoEngine.js"></script>
+
+	<script>
+		function draw(){
+			var ctx = isoEngine.createScene(document.body, 300,300);
+
+			ctx.fillStyle = "red";
+			ctx.strokeStyle="black";
+			ctx.rect(1,1,299,299);
+			ctx.fill();
+			ctx.stroke();
+
+			var tile = [
+			{x:0,y:0,z:0},
+			{x:0,y:50,z:0},
+			{x:50,y:50,z:0},
+			{x:50,y:0,z:0}
+			];
+
+			var tile= isoEngine.ISOObject.cube(50);
+			ctx.beginPath();
+			ctx.fillStyle = "white";
+			coord=isoEngine.Projection(tile[0]);
+			ctx.moveTo(coord.x+100,coord.y+100);
+			console.log(coord.x+100,coord.y+100);
+			for(i=1; i<tile.length; i++){
+				coord=isoEngine.Projection(tile[i]);
+				ctx.lineTo(coord.x+100,coord.y+100);
+				console.log(coord.x+100,coord.y+100);
+			}
+			ctx.fill();
+			ctx.stroke();
+		}
+	</script>
+
+</head>
+
+<body>
+	<a href="javascript:draw();">Draw</a>
+lecture : http://gamedev.stackexchange.com/questions/3454/most-efficient-3d-depth-sorting-for-isometric-3d-in-as3/3532#3532
+http://en.wikipedia.org/wiki/Pigeonhole_sort
+http://gamedev.stackexchange.com/questions/8151/how-should-i-sort-images-in-an-isometric-game-so-that-they-appear-in-the-correct
+</body>
+</html>
